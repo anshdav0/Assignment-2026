@@ -70,7 +70,7 @@ game() {
 	done
 
 	nowd=70
-	nowid=314
+	nowid=260
 
 	i=1
 	while [ $i -le $nowd ]; do
