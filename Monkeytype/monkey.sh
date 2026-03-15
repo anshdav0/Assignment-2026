@@ -5,7 +5,7 @@ compare_arrays() {
 	local -n opt=$2
 	total_points=0
 	len_inp=0
-	len_opt=0
+	accuracy_measure_mark=0
 	local i=0
 
 	while [ $i -lt ${#inp[@]} ]; do
@@ -18,8 +18,10 @@ compare_arrays() {
 
 		if [ $l1 -le $l2 ]; then
 			local l=$l1
+			((accuracy_measure_mark += l2))
 		else
 			local l=$l2
+			((accuracy_measure_mark += l1))
 		fi
 
 		local j=0
@@ -151,7 +153,7 @@ game() {
 	if [ $len_inp -eq 0 ]; then
 		echo "Entered nothing"
 	else
-		accuracy=$(echo "scale=2; ($total_points*100)/$len_inp" | bc)
+		accuracy=$(echo "scale=2; ($total_points*100)/$accuracy_measure_mark" | bc)
 		echo "Accuracy: $accuracy%"
 
 		wpm=$(echo "scale=2; ($len_inp*12)/$time_type" | bc)
